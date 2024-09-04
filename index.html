@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia +</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Farmacia +</h1>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="d-flex gap-4">
+                <h1 class="page-title">Vitrine de Medicamentos</h1>
+                <span class="count-box">0</span>
+            </div>
+            <button type="button" class="open-modal-btn">Cadastrar Medicamento</button>
+        </div>
+
+        <div class="medicamentos">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Farmacia +</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                Cadastrar Medicamento
+            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="text" id="med-name" placeholder="Nome" />
+                    <input type="text" id="med-lab" placeholder="Laboratório" />
+                    <input type="text" id="med-price" placeholder="Preço" />
+                    <input type="url" id="med-img" placeholder="URL da Imagem" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-close">Fechar</button>
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para abrir e fechar o modal
+        document.querySelector('.btn-close').addEventListener('click', function () {
+            document.getElementById('modal').style.visibility = 'hidden';
+            document.getElementById('modal').style.opacity = '0';
+        });
+
+        // Logica para abrir o modal ao clicar no botão
+        document.querySelector('.open-modal-btn').addEventListener('click', function () {
+            document.getElementById('modal').style.visibility = 'visible';
+            document.getElementById('modal').style.opacity = '1';
+        });
+
+        // Para fechar o modal ao clicar no modal-overlay
+        document.querySelector('.modal-overlay').addEventListener('click', function (event) {
+            // Codigo necessario para verificar se o modal vai fechar ao clicar diretamente no overlay, não no elemento filho que é o modal
+            // obs: Foi necessário essa adaptação pois ocorria de clicar nos campos do formularios e fechar o modal
+            if (event.target === this) {
+                document.getElementById('modal').style.visibility = 'hidden';
+                document.getElementById('modal').style.opacity = '0';
+            }
+        });
+    </script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
